@@ -64,5 +64,27 @@ namespace MyApp.Controllers
             }
             return View(item);
         }
+
+        // GET: Items/Delete/5
+        public IActionResult Delete(int id)
+        {
+            var item = _context.Items.Find(id);
+            if (item == null) return NotFound();
+            return View(item); // shows confirmation page
+        }
+
+        // POST: Items/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var item = _context.Items.Find(id);
+            if (item == null) return NotFound();
+
+            _context.Items.Remove(item);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Overview));
+        }
     }
 }
