@@ -8,6 +8,8 @@
 *.userosscache
 *.sln.docstates
 
+wwwroot
+
 # Auto-generated files
 *.DotSettings.user
 
