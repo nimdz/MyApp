@@ -1,16 +1,21 @@
 @model IEnumerable<Myapp.Models.Item>
 
+@{
+    ViewData["Title"] = "Items Overview";
+}
+
 <h2>Items Overview</h2>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Add New Item</a>
+    <a asp-action="Create" class="btn btn-primary">Create New Item</a>
 </p>
 
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>Id</th>
             <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -18,15 +23,13 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.Id</td>
                 <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Price.ToString("C")</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
-                </td>
-                <td>
                     <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
                 </td>
-
             </tr>
         }
     </tbody>
